@@ -2,8 +2,8 @@
 let mascotaJugador;
 let mascotaPC;
 //Player and enemy lives
-let vidasJugador = 20;
-let vidasEnemigo = 20;
+let vidasJugador = 5;
+let vidasEnemigo = 5;
 //function to run the game when the whole HTML is loaded
 function cargaDelJuego() {
   let botonMascota = document.getElementById("boton-mascota");
