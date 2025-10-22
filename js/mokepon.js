@@ -9,9 +9,13 @@ function cargaDelJuego() {
   let botonMascota = document.getElementById("boton-mascota");
   let spanVidasJugador = document.getElementById("vidas-jugador");
   let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+  let reinicio = document.getElementById("boton-reiniciar")
   spanVidasEnemigo.textContent = vidasEnemigo;
   spanVidasJugador.textContent = vidasJugador;
   botonMascota.addEventListener("click", seleccionarMascotaJugador);
+  reinicio.addEventListener("click", function(){
+    location.reload(true);
+  });
   pelea();
 }
 //function to select a random number in a range
