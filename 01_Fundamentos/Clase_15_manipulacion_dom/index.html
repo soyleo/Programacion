@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/mokepon.js"></script>
+    <title>Mokepon</title>
+</head>
+<body>
+    <h1>Mokepon! 🔥💧🌿</h1>
+    <section id="seleccion-mascota">
+        <h2>Elije a tu mascota</h2>
+        <input type="radio" name="mascota" id="hipodoge" value="Hipodoge" />
+        <label for="hipodoge">Hipodoge</label>
+        <input type="radio" name="mascota" id="capipepo" value="Capipepo" />
+        <label for="capipepo">Capipepo</label>
+        <input type="radio" name="mascota" id="ratigueya" value="Ratigueya" />
+        <label for="ratigueya">Ratigueya</label>
+        <input type="radio" name="mascota" id="langostelvis" value="Langostelvis" />
+        <label for="langostelvis">Langostelvis</label>
+        <input type="radio" name="mascota" id="tucapalma" value="Tucapalma" />
+        <label for="tucapalma">Tucapalma</label>
+        <input type="radio" name="mascota" id="pydos" value="Pydos" />
+        <label for="pydos">Pydos</label>
+        <button id="boton-mascota">Seleccionar</button>
+       
+        
+    </section>
+    <section id="seleccion-ataque">
+        <h2>Elije tu ataque</h2>
+        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">X</span> vidas</p>
+        <p>La mascota <span id="mascota-rival"></span> del rival tiene <span id="vidas-enemigo">X</span> vidas</p>
+        <div class="contenedor-ataques">
+            <button id="boton-fuego" value="FUEGO 🔥">Fuego 🔥</button>
+            <button id="boton-agua" value="AGUA 💧">Agua 💧</button>
+            <button id="boton-planta" value="PLANTA 🌿">Planta 🌿</button>
+            <button id="boton-tierra" value="TIERRA 🌄">Tierra 🌄</button>
+            <button id="boton-hielo" value="HIELO ❄️">Hielo ❄️</button>
+        </div>
+    </section>
+    <section id="mensajes">
+        
+    </section>
+    <section id="reiniciar-juego">
+        <button id="boton-reiniciar">Reiniciar</button>
+    </section>
+
+</body>
+</html>
