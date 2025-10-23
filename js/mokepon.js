@@ -9,7 +9,11 @@ function cargaDelJuego() {
   let botonMascota = document.getElementById("boton-mascota");
   let spanVidasJugador = document.getElementById("vidas-jugador");
   let spanVidasEnemigo = document.getElementById("vidas-enemigo");
-  let reinicio = document.getElementById("boton-reiniciar")
+  let reinicio = document.getElementById("boton-reiniciar");
+  let seleccionarAtaque = document.getElementById("seleccion-ataque");
+  let botonReinicio = document.getElementById("reiniciar-juego");
+  seleccionarAtaque.style.display = "none";
+  botonReinicio.style.display = "none";
   spanVidasEnemigo.textContent = vidasEnemigo;
   spanVidasJugador.textContent = vidasJugador;
   botonMascota.addEventListener("click", seleccionarMascotaJugador);
@@ -35,12 +39,17 @@ function seleccionarMascotaPC() {
 function seleccionarMascotaJugador() {
   let mascota = document.querySelector('input[name="mascota"]:checked');
   let spanMascotaJugador = document.getElementById("mascota-jugador");
+  let seleccionMascota = document.getElementById("seleccion-mascota");
+  let seleccionarAtaque = document.getElementById("seleccion-ataque");
   if (mascota == null) {
     alert("Selecciona una mascota");
   } else if (mascota != null) {
     spanMascotaJugador.textContent = mascota.value;
     mascotaJugador = mascota.value;
     seleccionarMascotaPC();
+    seleccionMascota.style.display = "none";
+    seleccionarAtaque.style.display = "block";
+
   }
 }
 //function to enemy automatic attack selection
@@ -53,7 +62,7 @@ function ataquePC() {
 //main function to run the fight
 function pelea() {
   let contenedorAtaques = document.querySelector(".contenedor-ataques");
-  
+  let reinicio = document.getElementById("reiniciar-juego")
   let sectionMensajes = document.getElementById("mensajes");
   let mensajeTurno = document.createElement("p");
   sectionMensajes.appendChild(mensajeTurno);
@@ -72,7 +81,7 @@ function pelea() {
         ataqueAleatorio +
         ". " +
         determinarGanador(ataqueSeleccionado, ataqueAleatorio);
-      if (vidasEnemigo === 0) {
+      if (vidasEnemigo <= 0) {
         mensajeTurno.textContent =
           "Felicitaciones!!! Tu " +
           mascotaJugador +
@@ -81,8 +90,9 @@ function pelea() {
           " de tu enemigo 🎉🎉🎉";
         contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
+          reinicio.style.display = "block";
         });
-      } else if (vidasJugador === 0) {
+      } else if (vidasJugador <= 0) {
         mensajeTurno.textContent =
           "Ohhhh lo siento... Tu mascota " +
           mascotaJugador +
@@ -91,6 +101,7 @@ function pelea() {
           " del enemigo...";
           contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
+          reinicio.style.display = "block";
         });
       }
     }
