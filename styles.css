@@ -36,7 +36,6 @@ input{
     flex-direction: column;
     background-color: #00FFFF;
     padding: 10px 15px;
-    margin: 10px;
     border: 3px solid #ff4500;
 }
 .tarjeta-de-mokepon:hover{
@@ -55,6 +54,7 @@ input{
     padding: 5px;
     border: 2px solid #bf00ff;
     font-size: 1.125rem;
+    cursor: pointer;
 }
 #titulo{
     font-weight: 400;
@@ -99,12 +99,16 @@ input{
 #seleccion-mascota{
     border: 2px solid white;
     display: flex;
-    flex-direction: column;
+    gap: 15px;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 500px;
     position: relative;
-    padding: 30px;
+    padding: 4rem;
+}
+#boton-mascota{
+    position:absolute;
+    bottom: 10px;
 }
 
 
