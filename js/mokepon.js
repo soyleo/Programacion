@@ -48,20 +48,20 @@ function seleccionarMascotaJugador() {
     mascotaJugador = mascota.value;
     seleccionarMascotaPC();
     seleccionMascota.style.display = "none";
-    seleccionarAtaque.style.display = "block";
+    seleccionarAtaque.style.display = "flex";
 
   }
 }
 //function to enemy automatic attack selection
 function ataquePC() {
-  let listaAtaques = document.querySelectorAll(".contenedor-ataques button");
+  let listaAtaques = document.querySelectorAll("#contenedor-ataques button");
   let ataqueAleatorio =
     listaAtaques[aleatorio(1, listaAtaques.length) - 1].value;
   return ataqueAleatorio;
 }
 //main function to run the fight
 function pelea() {
-  let contenedorAtaques = document.querySelector(".contenedor-ataques");
+  let contenedorAtaques = document.querySelector("#contenedor-ataques");
   let reinicio = document.getElementById("reiniciar-juego")
   let sectionMensajes = document.getElementById("mensajes");
   let mensajeTurno = document.createElement("p");

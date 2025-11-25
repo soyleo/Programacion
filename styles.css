@@ -41,7 +41,7 @@ input{
 .tarjeta-de-mokepon:hover{
     cursor: pointer;
 }
-.tarjeta-de-mokepon:active{
+input[type="radio"]:checked + .tarjeta-de-mokepon{
     background-color: #bf00ff;
     border-color: #39FF14;
 }
@@ -110,5 +110,12 @@ input{
     position:absolute;
     bottom: 10px;
 }
-
-
+#seleccion-ataque{
+    flex-direction: column;
+    border: 2px solid white;
+    position: relative;
+    padding: 4rem;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
