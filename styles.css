@@ -56,6 +56,13 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     font-size: 1.125rem;
     cursor: pointer;
 }
+.btn-atq{
+    border-radius: 2rem;
+    border: 2px solid white;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    color: white;
+}
 #titulo{
     font-weight: 400;
     font-style: normal;
@@ -118,4 +125,23 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     align-items: center;
     justify-content: center;
     width: 100vw;
+}
+#boton-fuego{
+    background-color: #ff4500;
+}
+#boton-agua{
+    background-color: #0066ff;
+}
+#boton-planta{
+    background-color: #00cc44;
+}
+#boton-tierra{
+    background-color: #996633;
+}
+#boton-hielo{
+    background-color: #66ccff;
+}
+#mensajes{
+    margin-top: 1rem;
+    font-size: 1.5rem;
 }

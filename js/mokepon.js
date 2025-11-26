@@ -87,7 +87,7 @@ function pelea() {
           mascotaJugador +
           " derrotó a la mascota " +
           mascotaPC +
-          " de tu enemigo 🎉🎉🎉";
+          " de tu enemigo.";
         contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
           reinicio.style.display = "block";
@@ -112,37 +112,37 @@ function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
   let spanVidasJugador = document.getElementById("vidas-jugador");
   let spanVidasEnemigo = document.getElementById("vidas-enemigo");
   let reglas = {
-    "FUEGO 🔥": {
-      gana_a: ["PLANTA 🌿", "HIELO ❄️"],
-      pierde_con: ["AGUA 💧", "TIERRA 🌄"],
+    "FUEGO": {
+      gana_a: ["PLANTA", "HIELO"],
+      pierde_con: ["AGUA", "TIERRA"],
     },
-    "AGUA 💧": {
-      gana_a: ["FUEGO 🔥", "TIERRA 🌄"],
-      pierde_con: ["PLANTA 🌿", "HIELO ❄️"],
+    "AGUA": {
+      gana_a: ["FUEGO", "TIERRA"],
+      pierde_con: ["PLANTA", "HIELO"],
     },
-    "PLANTA 🌿": {
-      gana_a: ["AGUA 💧", "TIERRA 🌄"],
-      pierde_con: ["FUEGO 🔥", "HIELO ❄️"],
+    "PLANTA": {
+      gana_a: ["AGUA", "TIERRA"],
+      pierde_con: ["FUEGO", "HIELO"],
     },
-    "TIERRA 🌄": {
-      gana_a: ["AGUA 💧", "FUEGO 🔥"],
-      pierde_con: ["HIELO ❄️", "PLANTA 🌿"],
+    "TIERRA": {
+      gana_a: ["AGUA", "FUEGO"],
+      pierde_con: ["HIELO", "PLANTA"],
     },
-    "HIELO ❄️": {
-      gana_a: ["PLANTA 🌿", "AGUA 💧"],
-      pierde_con: ["FUEGO 🔥", "TIERRA 🌄"],
+    "HIELO": {
+      gana_a: ["PLANTA", "AGUA"],
+      pierde_con: ["FUEGO", "TIERRA"],
     },
   };
   if (reglas[ataqueSeleccionado].gana_a.includes(ataqueAleatorio)) {
     vidasEnemigo--;
     spanVidasEnemigo.textContent = vidasEnemigo;
-    return "GANASTE 🎉";
+    return mascotaPC + "  enemigo recibe 1 de daño";
   } else if (reglas[ataqueSeleccionado].pierde_con.includes(ataqueAleatorio)) {
     vidasJugador--;
     spanVidasJugador.textContent = vidasJugador;
-    return "PERDISTE 💀";
+    return "Tu " + mascotaJugador + "  recibe 1 de daño";
   } else {
-    return "EMPATE 🤝";
+    return "Empate, nadie recibe daño";
   }
 }
 window.addEventListener("load", cargaDelJuego);
