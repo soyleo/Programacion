@@ -11,12 +11,14 @@ body{
     align-items: center;
     color: white;
 }
-img{
-    width: 68px;
-    height: auto;
+main{
+    width: 100%;
 }
 input{
     display: none;
+}
+label{
+    width: 100%;
 }
 .section-title{
     font-size: 2rem;
@@ -37,6 +39,11 @@ input{
     background-color: #00FFFF;
     padding: 10px 15px;
     border: 3px solid #ff4500;
+    align-items: center;
+    min-width: 100px;
+    width: calc(33% - 10px);
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 .tarjeta-de-mokepon:hover{
     cursor: pointer;
@@ -72,6 +79,15 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     align-items: center;
     margin: 1rem;
     padding: 1rem;
+}
+.imagen-mascota{
+    width: 100%;
+    height: auto;
+}
+.img-card{
+    width: 50%;
+    min-width: 64px;
+    height: auto;
 }
 #titulo{
     font-weight: 400;
@@ -116,8 +132,8 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 #seleccion-mascota{
     border: 2px solid white;
     display: flex;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
     align-items: center;
     position: relative;
