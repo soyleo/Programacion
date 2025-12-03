@@ -20,7 +20,6 @@ function cargaDelJuego() {
   reinicio.addEventListener("click", function(){
     location.reload(true);
   });
-  pelea();
 }
 //function to select a random number in a range
 function aleatorio(min, max) {
@@ -51,6 +50,7 @@ function seleccionarMascotaJugador() {
     seleccionarAtaque.style.display = "flex";
 
   }
+  pelea();
 }
 //function to enemy automatic attack selection
 function ataquePC() {
@@ -62,14 +62,22 @@ function ataquePC() {
 //main function to run the fight
 function pelea() {
   let contenedorAtaques = document.querySelector("#contenedor-ataques");
-  let reinicio = document.getElementById("reiniciar-juego")
-  let sectionMensajes = document.getElementById("mensajes");
-  let mensajeTurno = document.createElement("p");
-  sectionMensajes.appendChild(mensajeTurno);
+  let reinicio = document.getElementById("reiniciar-juego");
+  let mensajes = document.getElementById("mensajes");
+  let mensajeTurno = document.getElementById("mensaje-turno");
+  let imgMascotaJugador = document.getElementById("img-mascota-jugador");
+  let imgMascotaPC = document.getElementById("img-mascota-rival");
+  let srcJugador ="Img/" + mascotaJugador.toLowerCase() + ".png";
+  let srcPC ="Img/" + mascotaPC.toLowerCase() + ".png";
+  imgMascotaJugador.src = srcJugador;
+  imgMascotaPC.src = srcPC;
+  imgMascotaJugador.alt = mascotaJugador;
+  imgMascotaPC.alt = mascotaPC;
   contenedorAtaques.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
       let ataqueSeleccionado = event.target.value;
       let ataqueAleatorio = ataquePC();
+      mensajes.style.border = "2px solid white";
       mensajeTurno.textContent =
         "Tu " +
         mascotaJugador +
@@ -136,13 +144,13 @@ function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
   if (reglas[ataqueSeleccionado].gana_a.includes(ataqueAleatorio)) {
     vidasEnemigo--;
     spanVidasEnemigo.textContent = vidasEnemigo;
-    return mascotaPC + "  enemigo recibe 1 de daño";
+    return mascotaPC + "  enemigo recibe 1 de daño.";
   } else if (reglas[ataqueSeleccionado].pierde_con.includes(ataqueAleatorio)) {
     vidasJugador--;
     spanVidasJugador.textContent = vidasJugador;
-    return "Tu " + mascotaJugador + "  recibe 1 de daño";
+    return "Tu " + mascotaJugador + "  recibe 1 de daño.";
   } else {
-    return "Empate, nadie recibe daño";
+    return "Empate, nadie recibe daño.";
   }
 }
 window.addEventListener("load", cargaDelJuego);

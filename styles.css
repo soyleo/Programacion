@@ -63,6 +63,16 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     padding: 0.5rem;
     color: white;
 }
+.btn-atq:hover{
+    cursor: pointer;
+}
+.muestra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+}
 #titulo{
     font-weight: 400;
     font-style: normal;
@@ -144,4 +154,24 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 #mensajes{
     margin-top: 1rem;
     font-size: 1.5rem;
+    text-align: center;
+}
+#muestra-mascotas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+#img-mascota-rival, #img-mascota-jugador{
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+#img-mascota-rival{
+    transform: scaleX(-1);
+}
+#contenedor-ataques{
+    margin-top: 1rem;
+}
+#reiniciar-juego{
+    margin-top: 1rem;
 }

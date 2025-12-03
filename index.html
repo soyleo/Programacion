@@ -20,21 +20,36 @@
         <section id="seleccion-mascota">
             <h2 class="section-title">Elige a tu mascota</h2>
             <input type="radio" name="mascota" id="wispy" value="Wispy" />
-            <label class="nombre-pet tarjeta-de-mokepon" for="wispy"><img src="Img/Wispy.png" alt="Wispy"> Wispy</label>
+            <label class="nombre-pet tarjeta-de-mokepon" for="wispy"><img src="Img/wispy.png" alt="Wispy"> Wispy</label>
             <input type="radio" name="mascota" id="bubbles" value="Bubbles" />
             <label class="nombre-pet tarjeta-de-mokepon" for="bubbles"><img src="Img/bubbles.png" alt="Bubbles"> Bubbles</label>
             <input type="radio" name="mascota" id="lizzy" value="Lizzy" />
-            <label class="nombre-pet tarjeta-de-mokepon" for="lizzy"><img src="Img/Lizzy.png" alt="Lizzy"> Lizzy</label>
+            <label class="nombre-pet tarjeta-de-mokepon" for="lizzy"><img src="Img/lizzy.png" alt="Lizzy"> Lizzy</label>
             <input type="radio" name="mascota" id="dusty" value="Dusty" />
             <label class="nombre-pet tarjeta-de-mokepon" for="dusty"><img src="Img/dusty.png" alt="Dusty"> Dusty</label>
             <input type="radio" name="mascota" id="frostiling" value="Frostiling" />
-            <label class="nombre-pet tarjeta-de-mokepon" for="frostiling"><img src="Img/frostling.png" alt="Frostiling"> Frostiling</label>
+            <label class="nombre-pet tarjeta-de-mokepon" for="frostiling"><img src="Img/frostiling.png" alt="Frostiling"> Frostiling</label>
             <input type="radio" name="mascota" id="purrly" value="Purrly" />
             <label class="nombre-pet tarjeta-de-mokepon" for="purrly"><img src="Img/purrly.png" alt="Purrly"> Purrly</label>
             <button class="btn" id="boton-mascota">Seleccionar</button>
         </section>
         <section id="seleccion-ataque">
             <h2 class="section-title">Elije tu ataque</h2>
+            <div id="muestra-mascotas">
+                <div class="muestra">
+                    <img id="img-mascota-jugador" src="" alt="">
+                    <div id="mascota-jugador"></div>
+                    <p>❤ <span id="vidas-jugador"></span></p>
+                </div>
+                <div class="muestra">
+                    <img id="img-mascota-rival" src="" alt="">
+                    <div id="mascota-rival"></div>
+                    <p>❤ <span id="vidas-enemigo"></span></p>
+                </div>
+            </div>
+            <div id="mensajes">
+                <p id="mensaje-turno"><br><br></p>
+            </div>
             <div id="contenedor-ataques">
                 <button class="btn-atq" id="boton-fuego" value="FUEGO">Fuego</button>
                 <button class="btn-atq" id="boton-agua" value="AGUA">Agua</button>
@@ -42,17 +57,9 @@
                 <button class="btn-atq" id="boton-tierra" value="TIERRA">Tierra</button>
                 <button class="btn-atq" id="boton-hielo" value="HIELO">Hielo</button>
             </div>
-            <div>
-                <div id="mensajes">
-
-                </div>
-                <div id="reiniciar-juego">
-                    <button id="boton-reiniciar">Reiniciar</button>
-                </div>
-            </div>
-            <div>
-                <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">X</span> vidas</p>
-                <p>La mascota <span id="mascota-rival"></span> del rival tiene <span id="vidas-enemigo">X</span> vidas</p>
+            
+            <div id="reiniciar-juego">
+                <button id="boton-reiniciar">Reiniciar</button>
             </div>
             
         </section>
