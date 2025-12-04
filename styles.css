@@ -89,6 +89,10 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     min-width: 64px;
     height: auto;
 }
+.muestra-vidas{
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+}
 #titulo{
     font-weight: 400;
     font-style: normal;
@@ -176,11 +180,16 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    width: 100%;
 }
 #img-mascota-rival, #img-mascota-jugador{
-    width: 100%;
+    width: 50%;
     height: auto;
     margin-bottom: 1rem;
+}
+#mascota-jugador, #mascota-rival{
+    text-align: center;
+    font-size: 2rem;
 }
 #img-mascota-rival{
     transform: scaleX(-1);
@@ -190,4 +199,24 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 }
 #reiniciar-juego{
     margin-top: 1rem;
+}
+#boton-reiniciar{
+    padding: 0.5rem 0.75rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border-color: #ffa500;
+    color: #ffa500;
+    background-color: #ff4500;
+
+}
+#boton-reiniciar:hover{
+    border-color: #ff4500;
+    color: #ff4500;
+    background-color: #ffa500;
+}
+#boton-reiniciar:active{
+    transform: scale(0.98);
+    border-color: #dd8300;
+    color: #dd8300;
+    background-color: #dd2300;
 }

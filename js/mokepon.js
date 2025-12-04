@@ -1,3 +1,26 @@
+const seleccionarAtaque = document.getElementById("seleccion-ataque");
+
+const botonMascota = document.getElementById("boton-mascota");
+const spanVidasJugador = document.getElementById("vidas-jugador");
+const spanVidasEnemigo = document.getElementById("vidas-enemigo");
+const reinicio = document.getElementById("boton-reiniciar");
+const botonReinicio = document.getElementById("reiniciar-juego");
+
+const mascotaMascotaRival = document.getElementById("mascota-rival");
+const listaMascotas = document.querySelectorAll('input[name="mascota"]');
+
+const spanMascotaJugador = document.getElementById("mascota-jugador");
+const seleccionMascota = document.getElementById("seleccion-mascota");
+
+const listaAtaques = document.querySelectorAll("#contenedor-ataques button");
+
+const contenedorAtaques = document.querySelector("#contenedor-ataques");
+const mensajes = document.getElementById("mensajes");
+const mensajeTurno = document.getElementById("mensaje-turno");
+const imgMascotaJugador = document.getElementById("img-mascota-jugador");
+const imgMascotaPC = document.getElementById("img-mascota-rival");
+
+
 //Player and enemy pet variable
 let mascotaJugador;
 let mascotaPC;
@@ -6,12 +29,7 @@ let vidasJugador = 5;
 let vidasEnemigo = 5;
 //function to run the game when the whole HTML is loaded
 function cargaDelJuego() {
-  let botonMascota = document.getElementById("boton-mascota");
-  let spanVidasJugador = document.getElementById("vidas-jugador");
-  let spanVidasEnemigo = document.getElementById("vidas-enemigo");
-  let reinicio = document.getElementById("boton-reiniciar");
-  let seleccionarAtaque = document.getElementById("seleccion-ataque");
-  let botonReinicio = document.getElementById("reiniciar-juego");
+  
   seleccionarAtaque.style.display = "none";
   botonReinicio.style.display = "none";
   spanVidasEnemigo.textContent = vidasEnemigo;
@@ -27,8 +45,7 @@ function aleatorio(min, max) {
 }
 //function to select an automatic pet for the enemy
 function seleccionarMascotaPC() {
-  let mascotaMascotaRival = document.getElementById("mascota-rival");
-  let listaMascotas = document.querySelectorAll('input[name="mascota"]');
+  
   let mascotaAleatoria =
     listaMascotas[aleatorio(1, listaMascotas.length) - 1].value;
   mascotaPC = mascotaAleatoria;
@@ -37,9 +54,7 @@ function seleccionarMascotaPC() {
 //function to player's pet selection
 function seleccionarMascotaJugador() {
   let mascota = document.querySelector('input[name="mascota"]:checked');
-  let spanMascotaJugador = document.getElementById("mascota-jugador");
-  let seleccionMascota = document.getElementById("seleccion-mascota");
-  let seleccionarAtaque = document.getElementById("seleccion-ataque");
+
   if (mascota == null) {
     alert("Selecciona una mascota");
   } else if (mascota != null) {
@@ -54,19 +69,14 @@ function seleccionarMascotaJugador() {
 }
 //function to enemy automatic attack selection
 function ataquePC() {
-  let listaAtaques = document.querySelectorAll("#contenedor-ataques button");
+
   let ataqueAleatorio =
     listaAtaques[aleatorio(1, listaAtaques.length) - 1].value;
   return ataqueAleatorio;
 }
 //main function to run the fight
 function pelea() {
-  let contenedorAtaques = document.querySelector("#contenedor-ataques");
-  let reinicio = document.getElementById("reiniciar-juego");
-  let mensajes = document.getElementById("mensajes");
-  let mensajeTurno = document.getElementById("mensaje-turno");
-  let imgMascotaJugador = document.getElementById("img-mascota-jugador");
-  let imgMascotaPC = document.getElementById("img-mascota-rival");
+  
   let srcJugador ="Img/" + mascotaJugador.toLowerCase() + ".png";
   let srcPC ="Img/" + mascotaPC.toLowerCase() + ".png";
   imgMascotaJugador.src = srcJugador;
@@ -98,7 +108,7 @@ function pelea() {
           " de tu enemigo.";
         contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
-          reinicio.style.display = "block";
+          botonReinicio.style.display = "block";
         });
       } else if (vidasJugador <= 0) {
         mensajeTurno.textContent =
@@ -109,7 +119,7 @@ function pelea() {
           " del enemigo...";
           contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
-          reinicio.style.display = "block";
+          botonReinicio.style.display = "block";
         });
       }
     }
@@ -117,8 +127,7 @@ function pelea() {
 }
 //fight result function
 function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
-  let spanVidasJugador = document.getElementById("vidas-jugador");
-  let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+  
   let reglas = {
     "FUEGO": {
       gana_a: ["PLANTA", "HIELO"],

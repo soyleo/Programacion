@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/mokepon.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
@@ -39,12 +38,12 @@
                 <div class="muestra">
                     <img id="img-mascota-jugador" src="" alt="">
                     <div id="mascota-jugador"></div>
-                    <p>❤ <span id="vidas-jugador"></span></p>
+                    <p class="muestra-vidas">❤ <span id="vidas-jugador"></span></p>
                 </div>
                 <div class="muestra">
                     <img id="img-mascota-rival" src="" alt="">
                     <div id="mascota-rival"></div>
-                    <p>❤ <span id="vidas-enemigo"></span></p>
+                    <p class="muestra-vidas">❤ <span id="vidas-enemigo"></span></p>
                 </div>
             </div>
             <div id="mensajes">
@@ -59,7 +58,7 @@
             </div>
             
             <div id="reiniciar-juego">
-                <button id="boton-reiniciar">Reiniciar</button>
+                <button class="btn" id="boton-reiniciar">Reiniciar</button>
             </div>
             
         </section>
@@ -68,6 +67,8 @@
     <footer>
         <p>Sumak web solution, todos los derechos reservados.</p>
     </footer>
+    
+    <script src="js/mokepon.js"></script>
 
 </body>
 
