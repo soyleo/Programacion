@@ -21,7 +21,7 @@ label{
     width: 100%;
 }
 .section-title{
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 3rem);
     border: 2px;
     border-color: white;
     color: white;
@@ -53,20 +53,20 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     border-color: #39FF14;
 }
 .nombre-pet{
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
 }
 .btn{
     color: #bf00ff;
     background-color: #39FF14;
     padding: 5px;
     border: 2px solid #bf00ff;
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     cursor: pointer;
 }
 .btn-atq{
     border-radius: 2rem;
     border: 2px solid white;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     padding: 0.5rem;
     color: white;
 }
@@ -79,6 +79,7 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     align-items: center;
     margin: 1rem;
     padding: 1rem;
+    width: calc(50% - 40px);
 }
 .imagen-mascota{
     width: 100%;
@@ -90,13 +91,13 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     height: auto;
 }
 .muestra-vidas{
-    font-size: 2.5rem;
+    font-size: clamp(1rem, 2.5vw, 2rem);
     margin-top: 0.5rem;
 }
 #titulo{
     font-weight: 400;
     font-style: normal;
-    font-size: 6rem;
+    font-size: clamp(3rem, 7vw, 8rem);
     text-align: center;
     -webkit-text-stroke-width: 0.125rem;
     margin-bottom: 1rem;
@@ -173,23 +174,25 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 }
 #mensajes{
     margin-top: 1rem;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 2rem);
     text-align: center;
 }
 #muestra-mascotas{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
     gap: 20px;
     width: 100%;
+    justify-items: center;
 }
 #img-mascota-rival, #img-mascota-jugador{
     width: 50%;
+    min-width: 65px;
     height: auto;
     margin-bottom: 1rem;
 }
 #mascota-jugador, #mascota-rival{
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(1rem, 2.5vw, 3rem);
 }
 #img-mascota-rival{
     transform: scaleX(-1);
