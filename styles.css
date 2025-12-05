@@ -152,7 +152,7 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     flex-direction: column;
     border: 2px solid white;
     position: relative;
-    padding: 4rem;
+    padding: 3rem;
     align-items: center;
     justify-content: center;
     width: 100vw;
@@ -172,6 +172,9 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 #boton-hielo{
     background-color: #66ccff;
 }
+#boton-normal{
+    background-color: #727272;
+}
 #mensajes{
     margin-top: 1rem;
     font-size: clamp(1rem, 2.5vw, 2rem);
@@ -180,7 +183,7 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
 #muestra-mascotas{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-    gap: 20px;
+    gap: 10px;
     width: 100%;
     justify-items: center;
 }
@@ -222,4 +225,12 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     border-color: #dd8300;
     color: #dd8300;
     background-color: #dd2300;
+}
+#contenedor-mascotas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

@@ -7,7 +7,6 @@ const reinicio = document.getElementById("boton-reiniciar");
 const botonReinicio = document.getElementById("reiniciar-juego");
 
 const mascotaMascotaRival = document.getElementById("mascota-rival");
-const listaMascotas = document.querySelectorAll('input[name="mascota"]');
 
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const seleccionMascota = document.getElementById("seleccion-mascota");
@@ -20,17 +19,53 @@ const mensajeTurno = document.getElementById("mensaje-turno");
 const imgMascotaJugador = document.getElementById("img-mascota-jugador");
 const imgMascotaPC = document.getElementById("img-mascota-rival");
 
+const contenedorMascotas = document.getElementById("contenedor-mascotas");
+
 
 //Player and enemy pet variable
 let mascotaJugador;
 let mascotaPC;
+let webPets = [];
+let opcionDeWebPets;
+let listaMascotas;
 //Player and enemy lives
 let vidasJugador = 5;
 let vidasEnemigo = 5;
+
+class WebPet {
+  constructor(nombre, img, vida, tipo){
+    this.nombre = nombre;
+    this.img = img;
+    this.vida = vida;
+    this.tipo = tipo;
+  }
+}
+
+let wispy = new WebPet('Wispy', 'Img/wispy.png', 5, 'Fuego');
+let bubbles = new WebPet('Bubbles', 'Img/bubbles.png', 5, 'Agua');
+let lizzy = new WebPet('Lizzy', 'Img/lizzy.png', 5, 'Planta');
+let dusty = new WebPet('Dusty', 'Img/dusty.png', 5, 'Tierra');
+let frostiling = new WebPet('Frostiling', 'Img/frostiling.png', 5, 'Hielo');
+let purrly = new WebPet('Purrly', 'Img/purrly.png', 5, 'Normal');
+
+webPets.push(wispy, bubbles, lizzy, dusty, frostiling, purrly);
+
 //function to run the game when the whole HTML is loaded
 function cargaDelJuego() {
   
   seleccionarAtaque.style.display = "none";
+  webPets.forEach((webPet) => {
+    opcionDeWebPets = `
+      <input type="radio" name="mascota" id=${webPet.nombre.toLowerCase()} value=${webPet.nombre} />
+      <label class="nombre-pet tarjeta-de-mokepon" for=${webPet.nombre.toLowerCase()}>
+        <img class="img-card" src=${webPet.img} alt=${webPet.nombre}>
+        ${webPet.nombre}
+        <button class="btn-atq" id="boton-${webPet.tipo.toLowerCase()}" >${webPet.tipo}</button>
+      </label>
+    `
+    contenedorMascotas.innerHTML += opcionDeWebPets;
+  });
+  listaMascotas = document.querySelectorAll('input[name="mascota"]');
   botonReinicio.style.display = "none";
   spanVidasEnemigo.textContent = vidasEnemigo;
   spanVidasJugador.textContent = vidasJugador;
