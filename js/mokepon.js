@@ -60,7 +60,7 @@ function cargaDelJuego() {
       <label class="nombre-pet tarjeta-de-mokepon" for=${webPet.nombre.toLowerCase()}>
         <img class="img-card" src=${webPet.img} alt=${webPet.nombre}>
         ${webPet.nombre}
-        <button class="btn-atq" id="boton-${webPet.tipo.toLowerCase()}" >${webPet.tipo}</button>
+        <p class="btn-atq" id="boton-${webPet.tipo.toLowerCase()}" >${webPet.tipo}</p>
       </label>
     `
     contenedorMascotas.innerHTML += opcionDeWebPets;
