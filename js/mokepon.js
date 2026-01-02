@@ -48,7 +48,6 @@ const reglas = {
 };
 const baseDamage = 20;
 
-
 //Player and enemy pet variable
 let mascotaJugador;
 let mascotaPC;
@@ -182,8 +181,6 @@ function pelea() {
 }
 //fight result function
 function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
-  
-  
   if (reglas[ataqueSeleccionado].gana_a.includes(ataqueAleatorio)) {
     vidasEnemigo-=resolucionDeTipos(mascotaJugador.tipo, ataqueSeleccionado, mascotaPC.tipo);
     spanVidasEnemigo.textContent = Math.max(0, vidasEnemigo);

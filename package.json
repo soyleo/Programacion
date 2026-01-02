@@ -1,0 +1,25 @@
+{
+  "name": "programacion",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "backend",
+    "webpet",
+    "firstporject"
+  ],
+  "homepage": "https://github.com/soyleo/Webpet#readme",
+  "bugs": {
+    "url": "https://github.com/soyleo/Webpet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soyleo/Webpet.git"
+  },
+  "license": "ISC",
+  "author": "Juan Leopoldo Sanguin Victorica",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
