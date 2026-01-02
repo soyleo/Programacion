@@ -34,8 +34,8 @@ const reglas = {
       pierde_con: ["Fuego", "Hielo"],
     },
     "Tierra": {
-      gana_a: ["Agua", "Fuego"],
-      pierde_con: ["Hielo", "Planta"],
+      gana_a: ["Hielo", "Fuego"],
+      pierde_con: ["Agua", "Planta"],
     },
     "Hielo": {
       gana_a: ["Planta", "Agua"],
