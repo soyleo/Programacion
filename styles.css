@@ -179,6 +179,10 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     margin-top: 1rem;
     font-size: clamp(1rem, 2.5vw, 2rem);
     text-align: center;
+    padding: 0.5rem;
+}
+#mensaje-turno{
+    white-space: pre-line;
 }
 #muestra-mascotas{
     display: grid;

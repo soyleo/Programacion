@@ -6,7 +6,7 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo");
 const reinicio = document.getElementById("boton-reiniciar");
 const botonReinicio = document.getElementById("reiniciar-juego");
 
-const mascotaMascotaRival = document.getElementById("mascota-rival");
+const mascotaRival = document.getElementById("mascota-rival");
 
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const seleccionMascota = document.getElementById("seleccion-mascota");
@@ -20,6 +20,33 @@ const imgMascotaJugador = document.getElementById("img-mascota-jugador");
 const imgMascotaPC = document.getElementById("img-mascota-rival");
 
 const contenedorMascotas = document.getElementById("contenedor-mascotas");
+const reglas = {
+    "Fuego": {
+      gana_a: ["Planta", "Hielo"],
+      pierde_con: ["Agua", "Tierra"],
+    },
+    "Agua": {
+      gana_a: ["Fuego", "Tierra"],
+      pierde_con: ["Planta", "Hielo"],
+    },
+    "Planta": {
+      gana_a: ["Agua", "Tierra"],
+      pierde_con: ["Fuego", "Hielo"],
+    },
+    "Tierra": {
+      gana_a: ["Agua", "Fuego"],
+      pierde_con: ["Hielo", "Planta"],
+    },
+    "Hielo": {
+      gana_a: ["Planta", "Agua"],
+      pierde_con: ["Fuego", "Tierra"],
+    },
+    "Normal": {
+      gana_a: [],
+      pierde_con: [],
+    },
+  };
+  const baseDamage = 20;
 
 
 //Player and enemy pet variable
@@ -29,8 +56,8 @@ let webPets = [];
 let opcionDeWebPets;
 let listaMascotas;
 //Player and enemy lives
-let vidasJugador = 5;
-let vidasEnemigo = 5;
+let vidasJugador;
+let vidasEnemigo;
 
 class WebPet {
   constructor(nombre, img, vida, tipo){
@@ -41,12 +68,12 @@ class WebPet {
   }
 }
 
-let wispy = new WebPet('Wispy', 'Img/wispy.png', 5, 'Fuego');
-let bubbles = new WebPet('Bubbles', 'Img/bubbles.png', 5, 'Agua');
-let lizzy = new WebPet('Lizzy', 'Img/lizzy.png', 5, 'Planta');
-let dusty = new WebPet('Dusty', 'Img/dusty.png', 5, 'Tierra');
-let frostiling = new WebPet('Frostiling', 'Img/frostiling.png', 5, 'Hielo');
-let purrly = new WebPet('Purrly', 'Img/purrly.png', 5, 'Normal');
+let wispy = new WebPet('Wispy', 'Img/wispy.png', 200, 'Fuego');
+let bubbles = new WebPet('Bubbles', 'Img/bubbles.png', 200, 'Agua');
+let lizzy = new WebPet('Lizzy', 'Img/lizzy.png', 200, 'Planta');
+let dusty = new WebPet('Dusty', 'Img/dusty.png', 200, 'Tierra');
+let frostiling = new WebPet('Frostiling', 'Img/frostiling.png', 200, 'Hielo');
+let purrly = new WebPet('Purrly', 'Img/purrly.png', 200, 'Normal');
 
 webPets.push(wispy, bubbles, lizzy, dusty, frostiling, purrly);
 
@@ -81,10 +108,10 @@ function aleatorio(min, max) {
 //function to select an automatic pet for the enemy
 function seleccionarMascotaPC() {
   
-  let mascotaAleatoria =
-    listaMascotas[aleatorio(1, listaMascotas.length) - 1].value;
-  mascotaPC = mascotaAleatoria;
-  mascotaMascotaRival.textContent = mascotaAleatoria;
+  let aleatorioIndex = aleatorio(0, webPets.length - 1);
+
+  mascotaPC = webPets[aleatorioIndex];
+  mascotaRival.textContent = mascotaPC.nombre;
 }
 //function to player's pet selection
 function seleccionarMascotaJugador() {
@@ -92,9 +119,10 @@ function seleccionarMascotaJugador() {
 
   if (mascota == null) {
     alert("Selecciona una mascota");
-  } else if (mascota != null) {
+  } else {
     spanMascotaJugador.textContent = mascota.value;
-    mascotaJugador = mascota.value;
+
+    mascotaJugador = webPets.find(pet => pet.nombre === mascota.value);
     seleccionarMascotaPC();
     seleccionMascota.style.display = "none";
     seleccionarAtaque.style.display = "flex";
@@ -111,35 +139,27 @@ function ataquePC() {
 }
 //main function to run the fight
 function pelea() {
-  
-  let srcJugador ="Img/" + mascotaJugador.toLowerCase() + ".png";
-  let srcPC ="Img/" + mascotaPC.toLowerCase() + ".png";
-  imgMascotaJugador.src = srcJugador;
-  imgMascotaPC.src = srcPC;
-  imgMascotaJugador.alt = mascotaJugador;
-  imgMascotaPC.alt = mascotaPC;
+  vidasJugador = mascotaJugador.vida;
+  vidasEnemigo = mascotaPC.vida;
+  spanVidasJugador.textContent = vidasJugador;
+  spanVidasEnemigo.textContent = vidasEnemigo;
+  imgMascotaJugador.src = mascotaJugador.img;
+  imgMascotaPC.src = mascotaPC.img;
+  imgMascotaJugador.alt = mascotaJugador.nombre;
+  imgMascotaPC.alt = mascotaPC.nombre;
   contenedorAtaques.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
       let ataqueSeleccionado = event.target.value;
       let ataqueAleatorio = ataquePC();
       mensajes.style.border = "2px solid white";
-      mensajeTurno.textContent =
-        "Tu " +
-        mascotaJugador +
-        " atacó con " +
-        ataqueSeleccionado +
-        ", la mascota " +
-        mascotaPC +
-        " de tu rival atacó con " +
-        ataqueAleatorio +
-        ". " +
-        determinarGanador(ataqueSeleccionado, ataqueAleatorio);
+      // Usamos \n para el salto de línea
+      mensajeTurno.textContent = `Tu ${mascotaJugador.nombre} atacó con ${ataqueSeleccionado}La mascota ${mascotaPC.nombre} de tu rival atacó con ${ataqueAleatorio}.\n` + determinarGanador(ataqueSeleccionado, ataqueAleatorio);
       if (vidasEnemigo <= 0) {
         mensajeTurno.textContent =
           "Felicitaciones!!! Tu " +
-          mascotaJugador +
+          mascotaJugador.nombre +
           " derrotó a la mascota " +
-          mascotaPC +
+          mascotaPC.nombre +
           " de tu enemigo.";
         contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
@@ -148,9 +168,9 @@ function pelea() {
       } else if (vidasJugador <= 0) {
         mensajeTurno.textContent =
           "Ohhhh lo siento... Tu mascota " +
-          mascotaJugador +
+          mascotaJugador.nombre +
           " fue derrotada por la mascota " +
-          mascotaPC +
+          mascotaPC.nombre +
           " del enemigo...";
           contenedorAtaques.querySelectorAll("button").forEach(button => {
           button.disabled = true;
@@ -163,38 +183,31 @@ function pelea() {
 //fight result function
 function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
   
-  let reglas = {
-    "FUEGO": {
-      gana_a: ["PLANTA", "HIELO"],
-      pierde_con: ["AGUA", "TIERRA"],
-    },
-    "AGUA": {
-      gana_a: ["FUEGO", "TIERRA"],
-      pierde_con: ["PLANTA", "HIELO"],
-    },
-    "PLANTA": {
-      gana_a: ["AGUA", "TIERRA"],
-      pierde_con: ["FUEGO", "HIELO"],
-    },
-    "TIERRA": {
-      gana_a: ["AGUA", "FUEGO"],
-      pierde_con: ["HIELO", "PLANTA"],
-    },
-    "HIELO": {
-      gana_a: ["PLANTA", "AGUA"],
-      pierde_con: ["FUEGO", "TIERRA"],
-    },
-  };
+  
   if (reglas[ataqueSeleccionado].gana_a.includes(ataqueAleatorio)) {
-    vidasEnemigo--;
-    spanVidasEnemigo.textContent = vidasEnemigo;
-    return mascotaPC + "  enemigo recibe 1 de daño.";
+    vidasEnemigo-=resolucionDeTipos(mascotaJugador.tipo, ataqueSeleccionado, mascotaPC.tipo);
+    spanVidasEnemigo.textContent = Math.max(0, vidasEnemigo);
+    return `${mascotaPC.nombre} enemigo recibe ${resolucionDeTipos(mascotaJugador.tipo, ataqueSeleccionado, mascotaPC.tipo)} de daño.`;
   } else if (reglas[ataqueSeleccionado].pierde_con.includes(ataqueAleatorio)) {
-    vidasJugador--;
-    spanVidasJugador.textContent = vidasJugador;
-    return "Tu " + mascotaJugador + "  recibe 1 de daño.";
+    vidasJugador-=resolucionDeTipos(mascotaPC.tipo, ataqueAleatorio, mascotaJugador.tipo);
+    spanVidasJugador.textContent = Math.max(0, vidasJugador);
+    return `Tu ${mascotaJugador.nombre} recibe ${resolucionDeTipos(mascotaPC.tipo, ataqueAleatorio, mascotaJugador.tipo)} de daño.`;
   } else {
     return "Empate, nadie recibe daño.";
   }
+}
+function resolucionDeTipos(tipo, ataque, tipo2) {
+  let multiplier = 1;
+  if (tipo === ataque) {
+    multiplier *= 1.5;
+  }
+  if (tipo !== "Normal" && tipo2 !== "Normal") {
+    if (reglas[ataque].gana_a.includes(tipo2)) {
+      multiplier *= 2;
+    } else if (reglas[ataque].pierde_con.includes(tipo2)) {
+      multiplier *= 0.5;
+    }
+  }
+  return baseDamage * multiplier;
 }
 window.addEventListener("load", cargaDelJuego);
