@@ -21,32 +21,32 @@ const imgMascotaPC = document.getElementById("img-mascota-rival");
 
 const contenedorMascotas = document.getElementById("contenedor-mascotas");
 const reglas = {
-    "Fuego": {
-      gana_a: ["Planta", "Hielo"],
-      pierde_con: ["Agua", "Tierra"],
-    },
-    "Agua": {
-      gana_a: ["Fuego", "Tierra"],
-      pierde_con: ["Planta", "Hielo"],
-    },
-    "Planta": {
-      gana_a: ["Agua", "Tierra"],
-      pierde_con: ["Fuego", "Hielo"],
-    },
-    "Tierra": {
-      gana_a: ["Hielo", "Fuego"],
-      pierde_con: ["Agua", "Planta"],
-    },
-    "Hielo": {
-      gana_a: ["Planta", "Agua"],
-      pierde_con: ["Fuego", "Tierra"],
-    },
-    "Normal": {
-      gana_a: [],
-      pierde_con: [],
-    },
-  };
-  const baseDamage = 20;
+  "Fuego": {
+    gana_a: ["Planta", "Hielo"],
+    pierde_con: ["Agua", "Tierra"],
+  },
+  "Agua": {
+    gana_a: ["Fuego", "Tierra"],
+    pierde_con: ["Planta", "Hielo"],
+  },
+  "Planta": {
+    gana_a: ["Agua", "Tierra"],
+    pierde_con: ["Fuego", "Hielo"],
+  },
+  "Tierra": {
+    gana_a: ["Hielo", "Fuego"],
+    pierde_con: ["Agua", "Planta"],
+  },
+  "Hielo": {
+    gana_a: ["Planta", "Agua"],
+    pierde_con: ["Fuego", "Tierra"],
+  },
+  "Normal": {
+    gana_a: [],
+    pierde_con: [],
+  },
+};
+const baseDamage = 20;
 
 
 //Player and enemy pet variable
