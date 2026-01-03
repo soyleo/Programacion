@@ -99,6 +99,22 @@ function cargaDelJuego() {
   reinicio.addEventListener("click", function(){
     location.reload(true);
   });
+
+  unirseAlJuego()
+}
+
+function unirseAlJuego(){
+  fetch("http://localhost:8080/unirse")
+    .then(function (res){
+
+      if (res.ok){
+        res.text()
+          .then(function(respuesta){
+            console.log(respuesta);
+          })
+      }
+
+    })
 }
 //function to select a random number in a range
 function aleatorio(min, max) {
