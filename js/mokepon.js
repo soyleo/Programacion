@@ -49,6 +49,7 @@ const reglas = {
 const baseDamage = 20;
 
 //Player and enemy pet variable
+let jugadorId = null;
 let mascotaJugador;
 let mascotaPC;
 let webPets = [];
@@ -111,6 +112,7 @@ function unirseAlJuego(){
         res.text()
           .then(function(respuesta){
             console.log(respuesta);
+            jugadorId = respuesta;
           })
       }
 
@@ -138,6 +140,9 @@ function seleccionarMascotaJugador() {
     spanMascotaJugador.textContent = mascota.value;
 
     mascotaJugador = webPets.find(pet => pet.nombre === mascota.value);
+
+    seleccionarWebPet(mascotaJugador);
+
     seleccionarMascotaPC();
     seleccionMascota.style.display = "none";
     seleccionarAtaque.style.display = "flex";
@@ -145,6 +150,19 @@ function seleccionarMascotaJugador() {
   }
   pelea();
 }
+
+function seleccionarWebPet(mascotaJugador){
+  fetch("http://localhost:8080/webpet/" + jugadorId, {
+    method: 'post',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      webPet: mascotaJugador
+    })
+  })
+}
+
 //function to enemy automatic attack selection
 function ataquePC() {
 
