@@ -57,6 +57,28 @@ app.post("/webpet/:jugadorId", (req, res) =>{
     res.end();
 });
 
+app.get("/matchmaking/:jugadorId", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+
+    const oponentesPosibles = jugadores.filter((jugador) =>
+        jugador.id !== jugadorId && jugador.webPet
+    );
+
+    if (oponentesPosibles.length > 0) {
+        const indexAleatorio = Math.floor(Math.random() * (oponentesPosibles.length));
+        const oponente = oponentesPosibles[indexAleatorio];
+
+        res.send({
+            hayOponente: true,
+            oponente: oponente.webPet
+        });
+    } else {
+        res.send({
+            hayOponente:false
+        });
+    }
+});
+
 app.listen(port, () => {
     console.log("Servidor funcionando")
 });

@@ -124,11 +124,37 @@ function aleatorio(min, max) {
 }
 //function to select an automatic pet for the enemy
 function seleccionarMascotaPC() {
-  
-  let aleatorioIndex = aleatorio(0, webPets.length - 1);
+    fetch(`http://localhost:8080/matchmaking/${jugadorId}`)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(data => {
+            if (data && data.hayOponente) {
+                // Caso: Oponente Humano
+                mascotaPC = data.oponente;
+                console.log("¡Oponente real encontrado!");
+            } else {
+                // Caso: No hay nadie, usar IA
+                console.log("No hay oponentes, usando IA...");
+                let aleatorioIndex = aleatorio(0, webPets.length - 1);
+                mascotaPC = webPets[aleatorioIndex];
+            }
 
-  mascotaPC = webPets[aleatorioIndex];
-  mascotaRival.textContent = mascotaPC.nombre;
+            // --- ESTO DEBE ESTAR AQUÍ ADENTRO ---
+            // Solo actualizamos el HTML cuando ya sabemos quién es mascotaPC
+            mascotaRival.textContent = mascotaPC.nombre;
+            pelea(); 
+        })
+        .catch(err => {
+            console.error("Error en matchmaking, usando IA por defecto", err);
+            // Si el servidor falla, forzamos la IA para que el juego no se rompa
+            let aleatorioIndex = aleatorio(0, webPets.length - 1);
+            mascotaPC = webPets[aleatorioIndex];
+            mascotaRival.textContent = mascotaPC.nombre;
+            pelea();
+        });
 }
 //function to player's pet selection
 function seleccionarMascotaJugador() {
@@ -143,12 +169,11 @@ function seleccionarMascotaJugador() {
 
     seleccionarWebPet(mascotaJugador);
 
-    seleccionarMascotaPC();
     seleccionMascota.style.display = "none";
     seleccionarAtaque.style.display = "flex";
+    seleccionarMascotaPC();
 
   }
-  pelea();
 }
 
 function seleccionarWebPet(mascotaJugador){
