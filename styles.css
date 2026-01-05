@@ -152,7 +152,6 @@ input[type="radio"]:checked + .tarjeta-de-mokepon{
     flex-direction: column;
     border: 2px solid white;
     position: relative;
-    padding: 3rem;
     align-items: center;
     justify-content: center;
     width: 100vw;
