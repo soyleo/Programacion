@@ -18,6 +18,9 @@ class Jugador{
         this.webPet = webPet;
         this.nombre = webPet.nombre;
     }
+    asignarAtaque(ataque){
+        this.ataque = ataque;
+    }
 }
 
 class WebPet{
@@ -79,6 +82,19 @@ app.get("/matchmaking/:jugadorId", (req, res) => {
     }
 });
 
+app.post("webpet/:jugadorId/ataque", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const ataque = req.body.ataque || "";
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
+
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].asignarAtaque(ataque);
+    }
+    
+
+    res.end();
+});
+
 app.listen(port, () => {
-    console.log("Servidor funcionando")
+    console.log("Servidor funcionando");
 });

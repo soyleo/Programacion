@@ -208,7 +208,8 @@ function pelea() {
   contenedorAtaques.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
       let ataqueSeleccionado = event.target.value;
-      let ataqueAleatorio = ataquePC();
+      //let ataqueAleatorio = ataquePC();
+      enviarAtaques();
       mensajes.style.border = "2px solid white";
       // Usamos \n para el salto de línea
       mensajeTurno.textContent = `Tu ${mascotaJugador.nombre} atacó con ${ataqueSeleccionado}La mascota ${mascotaPC.nombre} de tu rival atacó con ${ataqueAleatorio}.\n` + determinarGanador(ataqueSeleccionado, ataqueAleatorio);
@@ -237,6 +238,17 @@ function pelea() {
       }
     }
   });
+}
+function enviarAtaques(){
+  fetch(`http://localhost:8080/webpet/${jugadorId}/ataque`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      ataque : ataqueSeleccionado
+    })
+  })
 }
 //fight result function
 function determinarGanador(ataqueSeleccionado, ataqueAleatorio) {
